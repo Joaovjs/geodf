@@ -3,15 +3,22 @@
   "version": "1.0.0",
   "main": "index.js",
   "private": true,
+  "scripts": {
+    "test": "jest"
+  },
   "workspaces": {
     "packages": [
-      "packages/*"
+      "packages/*",
+      "packages/shared/*"
     ]
   },
   "author": "João Victor <joaovictor_jorge@outlook.com>",
   "license": "MIT",
   "devDependencies": {
     "typescript": "^4.3.2",
-    "@geodf/eslint-config": "*"
+    "@geodf/eslint-config": "*",
+    "jest": "^27.0.4",
+    "@types/jest": "^26.0.23",
+    "ts-jest": "^27.0.3"
   }
 }
