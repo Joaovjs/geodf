@@ -9,5 +9,9 @@
     ]
   },
   "author": "João Victor <joaovictor_jorge@outlook.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.3.2",
+    "@geodf/eslint-config": "*"
+  }
 }
