@@ -23,14 +23,24 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
-    'prettier/prettier': 'error'
+    'prettier/prettier': 'error',
+    'space-before-function-paren': 'off',
+    camelcase: 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '_'
+      }
+    ],
+    'no-useless-constructor': 'off',
+    '@typescript-eslint/no-shadow': 'off'
   },
   settings: {
     'import/resolver': {
       typescript: {}
     },
     react: {
-      version: 'detect',
-    },
+      version: 'detect'
+    }
   }
-}
+};
