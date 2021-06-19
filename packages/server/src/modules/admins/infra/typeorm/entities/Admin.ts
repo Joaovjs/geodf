@@ -3,7 +3,8 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  CreateDateColumn
+  CreateDateColumn,
+  UpdateDateColumn
 } from 'typeorm'
 
 @Entity('admins')
@@ -24,6 +25,6 @@ export default class Admin {
   @CreateDateColumn()
   created_at: Date
 
-  @CreateDateColumn()
+  @UpdateDateColumn()
   updated_at: Date
 }

@@ -7,22 +7,16 @@ import {
   UpdateDateColumn
 } from 'typeorm'
 
-@Entity('medias')
-export default class Admin {
+@Entity('references')
+export default class Reference {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
   @Column()
-  slug: string
+  reference: string
 
   @Column()
-  title: string
-
-  @Column()
-  alt: string
-
-  @Column()
-  description: string
+  link: string
 
   @Column()
   @Exclude()

@@ -7,22 +7,19 @@ import {
   UpdateDateColumn
 } from 'typeorm'
 
-@Entity('medias')
-export default class Admin {
+@Entity('rock_types')
+export default class RockType {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
   @Column()
-  slug: string
-
-  @Column()
-  title: string
-
-  @Column()
-  alt: string
+  name: string
 
   @Column()
   description: string
+
+  @Column('uuid', { array: true })
+  references: string[]
 
   @Column()
   @Exclude()
