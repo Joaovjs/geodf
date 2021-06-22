@@ -4,7 +4,7 @@ import ListAdminService from './ListAdminService'
 let listAdmin: ListAdminService
 let fakeAdminsRepository: FakeAdminsRepository
 
-describe('CreateAdmin', () => {
+describe('ListAdmins', () => {
   beforeEach(async () => {
     fakeAdminsRepository = new FakeAdminsRepository()
     listAdmin = new ListAdminService(fakeAdminsRepository)
