@@ -16,7 +16,10 @@ export default class RockRepository implements IRocksRepository {
   public async getAll({ page, N }: IPagination): Promise<Rock[]> {
     const [rocks, count] = await this.ormRepository.findAndCount({
       take: N,
-      skip: page
+      skip: page,
+      where: {
+        status: true
+      }
     })
 
     this.count = count
