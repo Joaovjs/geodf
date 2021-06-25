@@ -16,10 +16,12 @@ export default class FakeBuildingsRepository implements IBuildingsRepository {
     return this.buildings.find(building => building.id === id)
   }
 
+  public async getBySlug(slug: string): Promise<Building | undefined> {
+    return this.buildings.find(building => building.slug === slug)
+  }
+
   public async update(building: Building): Promise<Building> {
-    const BuildingUpdatedIndex = this.buildings.findIndex(
-      buildingFinded => buildingFinded.id === building.id
-    )
+    const BuildingUpdatedIndex = this.buildings.findIndex(buildingFinded => buildingFinded.id === building.id)
 
     this.buildings[BuildingUpdatedIndex] = building
 

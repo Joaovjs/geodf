@@ -30,6 +30,16 @@ export default class BuildingRepository implements IBuildingsRepository {
     return building
   }
 
+  public async getBySlug(slug: string): Promise<Building | undefined> {
+    const building = await this.ormRepository.findOne({
+      where: {
+        slug: slug
+      }
+    })
+
+    return building
+  }
+
   public async update(building: Building): Promise<Building> {
     await this.ormRepository.save(building)
 

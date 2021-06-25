@@ -4,12 +4,6 @@ import BuildingsRocksRepository from '../infra/typeorm/repositories/BuildingsRoc
 import IBuildingsRepository from '../repositories/IBuildingsRepository'
 import IBuildingsRocksRepository from '../repositories/IBuildingsRocksRepository'
 
-container.registerSingleton<IBuildingsRepository>(
-  'BuildingsRepository',
-  BuildingsRepository
-)
+container.registerSingleton<IBuildingsRepository>('BuildingsRepository', BuildingsRepository)
 
-container.registerSingleton<IBuildingsRocksRepository>(
-  'BuildingsRocksRepository',
-  BuildingsRocksRepository
-)
+container.registerSingleton<IBuildingsRocksRepository>('BuildingsRocksRepository', BuildingsRocksRepository)

@@ -16,13 +16,13 @@ export default class ListRocksService {
     const page = pagination?.page || 0
     const N = pagination?.N || 10
 
-    const admins = await this.rocksRepository.getAll({
+    const rocks = await this.rocksRepository.getAll({
       page: page > 0 ? (page - 1) * N : 0,
       N
     })
 
     count = this.rocksRepository.count
 
-    return [admins, count]
+    return [rocks, count]
   }
 }
