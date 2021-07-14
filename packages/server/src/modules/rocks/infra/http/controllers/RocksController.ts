@@ -1,6 +1,7 @@
 import CreateRockService from '@modules/rocks/services/CreateRockService'
 import DeleteRockService from '@modules/rocks/services/DeleteRockService'
 import ListRocksService from '@modules/rocks/services/ListRocksService'
+import UpdateRockService from '@modules/rocks/services/UpdateRocksService'
 import responseObjectDefault from '@shared/utils/response.utils'
 import { classToClass } from 'class-transformer'
 import { Request, Response } from 'express'
@@ -40,6 +41,30 @@ export default class RocksController {
       images,
       references,
       created_by: user_id
+    })
+
+    const responseObject = responseObjectDefault({
+      data: classToClass(rock)
+    })
+
+    return response.json(responseObject)
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params
+    const { name, description, type, locations, thumbnail, images, references } = request.body
+
+    const updateRock = container.resolve(UpdateRockService)
+
+    const rock = await updateRock.execute({
+      id,
+      name,
+      description,
+      type,
+      locations,
+      thumbnail,
+      images,
+      references
     })
 
     const responseObject = responseObjectDefault({

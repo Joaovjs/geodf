@@ -1,3 +1,4 @@
+import BuildingRock from '@modules/buildings/infra/typeorm/entities/BuildingRock'
 import { Exclude } from 'class-transformer'
 import {
   Entity,
@@ -6,7 +7,8 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
-  JoinColumn
+  JoinColumn,
+  OneToMany
 } from 'typeorm'
 import RockType from './RockType'
 
@@ -37,6 +39,9 @@ export default class Rock {
 
   @Column('varchar', { array: true })
   images: string[]
+
+  @OneToMany(() => BuildingRock, rock => rock.rock)
+  buildingsRocks: BuildingRock[]
 
   @Column('uuid', { array: true })
   references: string[]

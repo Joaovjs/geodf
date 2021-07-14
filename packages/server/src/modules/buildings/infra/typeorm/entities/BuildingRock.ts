@@ -1,11 +1,15 @@
+import Rock from '@modules/rocks/infra/typeorm/entities/Rock'
 import { Exclude } from 'class-transformer'
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  ManyToOne,
+  JoinColumn
 } from 'typeorm'
+import Building from './Building'
 
 @Entity('buildings_rocks')
 export default class BuildingRock {
@@ -13,10 +17,20 @@ export default class BuildingRock {
   id: string
 
   @Column('uuid')
-  building: string
+  @Exclude()
+  building_id: string
+
+  @ManyToOne(() => Building, building => building.rocks)
+  @JoinColumn({ name: 'building_id' })
+  building: Building
 
   @Column('uuid')
-  rock: string
+  @Exclude()
+  rock_id: string
+
+  @ManyToOne(() => Rock, rock => rock.buildingsRocks)
+  @JoinColumn({ name: 'rock_id' })
+  rock: Rock
 
   @Column()
   name: string

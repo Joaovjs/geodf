@@ -4,18 +4,14 @@ import { EntityRepository, getRepository, Repository } from 'typeorm'
 import BuildingRock from '../entities/BuildingRock'
 
 @EntityRepository(BuildingRock)
-export default class BuildingRockRepository
-  implements IBuildingsRocksRepository
-{
+export default class BuildingRockRepository implements IBuildingsRocksRepository {
   private ormRepository: Repository<BuildingRock>
 
   constructor() {
     this.ormRepository = getRepository(BuildingRock)
   }
 
-  public async getAllFromBuilding(
-    building_id: string
-  ): Promise<BuildingRock[]> {
+  public async getAllFromBuilding(building_id: string): Promise<BuildingRock[]> {
     const buildingRocks = await this.ormRepository.find({
       where: { status: true, building: building_id }
     })

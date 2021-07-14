@@ -7,6 +7,7 @@ export default interface IBuildingsRepository {
   getAll(pagination: IPagination): Promise<Building[]>
   getByID(id: string): Promise<Building | undefined>
   getBySlug(slug: string): Promise<Building | undefined>
+  getByIdOrSlug(id_or_slug: string): Promise<Building | undefined>
   update(building: Building): Promise<Building>
   create(data: ICreateBuildingDTO): Promise<Building>
   delete(building: Building): Promise<void>

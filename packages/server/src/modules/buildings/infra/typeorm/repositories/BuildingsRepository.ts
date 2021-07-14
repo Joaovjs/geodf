@@ -40,6 +40,18 @@ export default class BuildingRepository implements IBuildingsRepository {
     return building
   }
 
+  public async getByIdOrSlug(id_or_slug: string): Promise<Building | undefined> {
+    const building = await this.ormRepository.findOne({
+      where: [
+        { id: id_or_slug, status: true },
+        { slug: id_or_slug, status: true }
+      ],
+      relations: ['rocks']
+    })
+
+    return building
+  }
+
   public async update(building: Building): Promise<Building> {
     await this.ormRepository.save(building)
 

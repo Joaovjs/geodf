@@ -45,7 +45,7 @@ describe('ListBuildings', () => {
       created_by: 'jhon-doe-id'
     })
 
-    const [buildings] = await listBuildings.execute()
+    const [buildings] = await listBuildings.execute({ page: 1, N: 2 })
 
     expect(buildings).toHaveLength(2)
   })

@@ -20,6 +20,10 @@ export default class FakeBuildingsRepository implements IBuildingsRepository {
     return this.buildings.find(building => building.slug === slug)
   }
 
+  public async getByIdOrSlug(id_or_slug: string): Promise<Building | undefined> {
+    return this.buildings.find(building => building.slug === id_or_slug || building.id === id_or_slug)
+  }
+
   public async update(building: Building): Promise<Building> {
     const BuildingUpdatedIndex = this.buildings.findIndex(buildingFinded => buildingFinded.id === building.id)
 

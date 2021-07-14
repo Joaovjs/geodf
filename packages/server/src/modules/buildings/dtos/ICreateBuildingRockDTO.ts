@@ -1,6 +1,6 @@
 export default interface ICreateBuildingRockDTO {
-  building: string
-  rock?: string
+  building_id: string
+  rock_id?: string
   name: string
   description: string
   images?: string[]

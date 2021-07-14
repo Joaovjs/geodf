@@ -1,12 +1,12 @@
 import authentication from '@modules/admins/infra/http/middlewares/authentication'
 import { celebrate, Joi, Segments } from 'celebrate'
 import { Router } from 'express'
-import RocksController from '../controllers/RocksController'
+import BuildingsController from '../controllers/BuildingsController'
 
-const rocksRouter = Router()
-const rockControler = new RocksController()
+const buildingsRouter = Router()
+const buildingsController = new BuildingsController()
 
-rocksRouter.get(
+buildingsRouter.get(
   '/',
   celebrate({
     [Segments.QUERY]: {
@@ -14,27 +14,37 @@ rocksRouter.get(
       N: Joi.number()
     }
   }),
-  rockControler.index
+  buildingsController.index
 )
 
-rocksRouter.post(
+buildingsRouter.get(
+  '/:id_or_slug',
+  celebrate({
+    [Segments.PARAMS]: {
+      id_or_slug: Joi.string().required()
+    }
+  }),
+  buildingsController.show
+)
+
+buildingsRouter.post(
   '/',
   authentication,
   celebrate({
     [Segments.BODY]: {
+      slug: Joi.string().required(),
       name: Joi.string().required(),
       description: Joi.string().required(),
-      type: Joi.string().uuid().required(),
-      locations: Joi.string(),
+      location: Joi.string(),
       thumbnail: Joi.string(),
       images: Joi.array().items(Joi.string()),
       references: Joi.array().items(Joi.string())
     }
   }),
-  rockControler.create
+  buildingsController.create
 )
 
-rocksRouter.put(
+buildingsRouter.put(
   '/:id',
   authentication,
   celebrate({
@@ -43,18 +53,18 @@ rocksRouter.put(
     },
     [Segments.BODY]: {
       name: Joi.string().required(),
+      slug: Joi.string(),
       description: Joi.string(),
-      type: Joi.string().uuid(),
-      locations: Joi.string(),
+      location: Joi.string(),
       thumbnail: Joi.string(),
       images: Joi.array().items(Joi.string()),
       references: Joi.array().items(Joi.string())
     }
   }),
-  rockControler.update
+  buildingsController.update
 )
 
-rocksRouter.delete(
+buildingsRouter.delete(
   '/:id',
   authentication,
   celebrate({
@@ -62,7 +72,7 @@ rocksRouter.delete(
       id: Joi.string().uuid().required()
     }
   }),
-  rockControler.delete
+  buildingsController.delete
 )
 
-export default rocksRouter
+export default buildingsRouter

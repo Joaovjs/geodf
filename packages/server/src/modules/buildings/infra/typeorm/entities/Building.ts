@@ -1,11 +1,6 @@
 import { Exclude } from 'class-transformer'
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn
-} from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm'
+import BuildingRock from './BuildingRock'
 
 @Entity('buildings')
 export default class Building {
@@ -29,6 +24,9 @@ export default class Building {
 
   @Column('varchar', { array: true })
   images: string[]
+
+  @OneToMany(() => BuildingRock, rock => rock.building)
+  rocks: BuildingRock[]
 
   @Column('uuid', { array: true })
   references: string[]
